@@ -117,6 +117,20 @@ void ClearList(Node *pHead,Node *pTail){
     printf("%s函数执行，双向非循环链表清空成功\n",__FUNCTION__);
 }
 
+//6.计算链表的长度
+int SizeList(Node *pHead,Node *pTail){
+
+    int i = 0;
+    Node *pMove;
+    pMove = pHead->next;
+    while (pMove != pTail) {
+        i++;
+        pMove = pMove->next;
+    }
+    printf("%s函数执行，链表的长度为%d\n",__FUNCTION__,i);
+
+    return i;
+}
 
 
 int main(int argc, const char * argv[]) {
@@ -130,9 +144,11 @@ int main(int argc, const char * argv[]) {
     PrintList(pHead, pTail);
     PrintReverseList(pHead,pTail);
 
+    SizeList(pHead, pTail);
+
     ClearList(pHead,pTail);
     PrintList(pHead, pTail);
-    
+
     return 0;
 }
 
