@@ -223,6 +223,26 @@ int InsertHeadList(Node *pHead,Node *pTail,int x){
     return 1;
 }
 
+//12.向链表的表尾插入一个元素
+int InsertTailList(Node *pHead,Node *pTail,int x){
+
+    Node *pInsert;
+    pInsert = (Node *)malloc(sizeof(Node));
+    memset(pInsert, 0, sizeof(Node));
+    pInsert->element = x;
+    pInsert->prior = NULL;
+    pInsert->next = NULL;
+
+    pTail->prior->next = pInsert;
+    pInsert->prior = pTail->prior;
+    pInsert->next = pTail;
+    pTail->prior = pInsert;
+
+    printf("%s函数执行，在表尾插入%d成功\n",__FUNCTION__,x);
+
+    return 1;
+}
+
 int main(int argc, const char * argv[]) {
 
     Node *pHead;//头结点
@@ -233,7 +253,7 @@ int main(int argc, const char * argv[]) {
     CreateList(pHead, pTail);
     PrintList(pHead, pTail);
     PrintReverseList(pHead,pTail);
-    
+
     SizeList(pHead, pTail);
 
     IsEmptyList(pHead,pTail);
@@ -244,8 +264,11 @@ int main(int argc, const char * argv[]) {
 
     ModifyElem(pHead, pTail, 2, 111);
     PrintList(pHead, pTail);
-
+    
     InsertHeadList(pHead,pTail,100);
+    PrintList(pHead, pTail);
+
+    InsertTailList(pHead,pTail,900);
     PrintList(pHead, pTail);
     
     ClearList(pHead,pTail);
