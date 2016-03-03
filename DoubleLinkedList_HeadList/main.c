@@ -182,6 +182,28 @@ int *GetElemAddr(Node *pHead,Node *pTail,int x){
     return NULL;
 }
 
+//10.把链表中第pos个节点的值修改为x
+int ModifyElem(Node *pHead,Node *pTail,int pos,int x){
+
+    int i = 1;
+    Node *pMove;
+    pMove = pHead->next;
+    while (pMove != pTail) {
+        if (i == pos) {
+
+            pMove->element = x;
+            printf("%s函数执行，修改pos=%d位置值为%d成功\n",__FUNCTION__,pos,x);
+            return 1;
+        }
+        i++;
+        pMove = pMove->next;
+    }
+
+    printf("%s函数执行，修改pos=%d位置元素失败\n",__FUNCTION__,pos);
+
+    return -1;
+}
+
 int main(int argc, const char * argv[]) {
 
     Node *pHead;//头结点
@@ -200,6 +222,9 @@ int main(int argc, const char * argv[]) {
     GetElement(pHead, pTail, 2);
 
     GetElemAddr(pHead, pTail, 5);
+
+    ModifyElem(pHead, pTail, 2, 111);
+    PrintList(pHead, pTail);
     
     ClearList(pHead,pTail);
     PrintList(pHead, pTail);
