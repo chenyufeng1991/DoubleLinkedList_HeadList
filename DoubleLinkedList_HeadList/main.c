@@ -144,6 +144,26 @@ int IsEmptyList(Node *pHead,Node *pTail){
     return 0;
 }
 
+//8.返回链表中第pos个结点中的元素，若返回-1，表示没有找到
+int GetElement(Node *pHead,Node *pTail,int pos){
+
+    int i = 1;
+    Node *pMove;
+    pMove = pHead->next;
+    while (pMove != pTail) {
+        if (i == pos) {
+            printf("%s函数执行，第pos=%d位置的元素为%d\n",__FUNCTION__,pos,pMove->element);
+            return pMove->element;
+        }
+        i++;
+        pMove = pMove->next;
+    }
+
+    printf("%s函数执行，查找第pos=%d位置元素失败\n",__FUNCTION__,pos);
+
+    return -1;
+}
+
 int main(int argc, const char * argv[]) {
 
     Node *pHead;//头结点
@@ -158,6 +178,8 @@ int main(int argc, const char * argv[]) {
     SizeList(pHead, pTail);
 
     IsEmptyList(pHead,pTail);
+
+    GetElement(pHead, pTail, 4);
     
     ClearList(pHead,pTail);
     PrintList(pHead, pTail);
