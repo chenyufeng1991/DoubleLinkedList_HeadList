@@ -164,6 +164,24 @@ int GetElement(Node *pHead,Node *pTail,int pos){
     return -1;
 }
 
+//9.从链表中查找给定值x的第一个元素，并返回data域的内存地址，否则返回NULL
+int *GetElemAddr(Node *pHead,Node *pTail,int x){
+
+    Node *pMove;
+    pMove = pHead->next;
+    while (pMove != pTail) {
+        if (pMove->element == x) {
+            printf("%s函数执行，值为%d的元素内存地址为0x%x\n",__FUNCTION__,x,&(pMove->element));
+            return &(pMove->element);
+        }
+        pMove = pMove->next;
+    }
+
+    printf("%s函数执行，查找值为%d的元素地址失败\n",__FUNCTION__,x);
+
+    return NULL;
+}
+
 int main(int argc, const char * argv[]) {
 
     Node *pHead;//头结点
@@ -179,7 +197,9 @@ int main(int argc, const char * argv[]) {
 
     IsEmptyList(pHead,pTail);
 
-    GetElement(pHead, pTail, 4);
+    GetElement(pHead, pTail, 2);
+
+    GetElemAddr(pHead, pTail, 5);
     
     ClearList(pHead,pTail);
     PrintList(pHead, pTail);
