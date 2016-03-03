@@ -78,10 +78,10 @@ void CreateList(Node *pHead,Node *pTail){
 void PrintList(Node *pHead,Node *pTail){
 
     Node *pMove;
-    pMove = pHead->next;
-    while (pMove != pTail) {
+    pMove = pTail->prior;
+    while (pMove != pHead) {
         printf("%d ",pMove->element);
-        pMove = pMove->next;
+        pMove = pMove->prior;
     }
 
     printf("\n%s函数执行，打印带头结点尾结点的双向非循环链表创建成功\n",__FUNCTION__);
