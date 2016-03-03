@@ -74,8 +74,21 @@ void CreateList(Node *pHead,Node *pTail){
 
 }
 
-//3.打印链表
+//3.正序打印链表
 void PrintList(Node *pHead,Node *pTail){
+
+    Node *pMove;
+    pMove = pHead->next;
+    while (pMove != pTail) {
+        printf("%d ",pMove->element);
+        pMove = pMove->next;
+    }
+
+    printf("\n%s函数执行，正序打印带头结点尾结点的双向非循环链表创建成功\n",__FUNCTION__);
+}
+
+//4.逆序打印链表
+void PrintReverseList(Node *pHead,Node *pTail){
 
     Node *pMove;
     pMove = pTail->prior;
@@ -84,8 +97,27 @@ void PrintList(Node *pHead,Node *pTail){
         pMove = pMove->prior;
     }
 
-    printf("\n%s函数执行，打印带头结点尾结点的双向非循环链表创建成功\n",__FUNCTION__);
+    printf("\n%s函数执行，逆序打印带头结点尾结点的双向非循环链表创建成功\n",__FUNCTION__);
 }
+
+//5.清除链表中的所有元素，使成为空表
+void ClearList(Node *pHead,Node *pTail){
+
+    Node *pMove;
+    pMove = pHead->next;
+
+    while (pMove != pTail) {
+
+        pHead->next = pMove->next;
+        pMove->next->prior = pHead;
+        free(pMove);
+        pMove = pHead->next;
+    }
+
+    printf("%s函数执行，双向非循环链表清空成功\n",__FUNCTION__);
+}
+
+
 
 int main(int argc, const char * argv[]) {
 
@@ -93,12 +125,19 @@ int main(int argc, const char * argv[]) {
     Node *pTail;//尾结点
 
     InitialList(&pHead, &pTail);
-
+    
     CreateList(pHead, pTail);
     PrintList(pHead, pTail);
+    PrintReverseList(pHead,pTail);
 
+    ClearList(pHead,pTail);
+    PrintList(pHead, pTail);
+    
     return 0;
 }
+
+
+
 
 
 
