@@ -132,6 +132,17 @@ int SizeList(Node *pHead,Node *pTail){
     return i;
 }
 
+//7.判断带头结点尾结点的双向非循环链表是否为空,为空返回1，否则返回0
+int IsEmptyList(Node *pHead,Node *pTail){
+    if (pHead->next == pTail) {
+
+        printf("%s函数执行，当前链表为空\n",__FUNCTION__);
+        return 1;
+    }
+
+    printf("%s函数执行，当前链表不为空\n",__FUNCTION__);
+    return 0;
+}
 
 int main(int argc, const char * argv[]) {
 
@@ -139,16 +150,19 @@ int main(int argc, const char * argv[]) {
     Node *pTail;//尾结点
 
     InitialList(&pHead, &pTail);
-    
+
     CreateList(pHead, pTail);
     PrintList(pHead, pTail);
     PrintReverseList(pHead,pTail);
-
+    
     SizeList(pHead, pTail);
 
+    IsEmptyList(pHead,pTail);
+    
     ClearList(pHead,pTail);
     PrintList(pHead, pTail);
-
+    IsEmptyList(pHead,pTail);
+    
     return 0;
 }
 
