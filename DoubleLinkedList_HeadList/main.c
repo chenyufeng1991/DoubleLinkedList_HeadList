@@ -30,7 +30,7 @@ void InitialList(Node **pHead,Node **pTail){
     if (*pHead == NULL || *pTail == NULL) {
         printf("%s函数执行，内存分配失败，初始化双链表失败\n",__FUNCTION__);
     }else{
-
+        //这个里面是关键，也是判空的重要条件
         (*pHead)->prior = NULL;
         (*pTail)->next = NULL;
 
